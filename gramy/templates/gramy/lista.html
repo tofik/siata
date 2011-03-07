@@ -1,8 +1,18 @@
 <h1>terminy grania</h1>
+<p>
+  {% for granie in grania %}
+  <li><a href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie }}</a></li>
+  {% empty %}
+  nie zdefiniowano terminów
+  {% endfor %}
+</p>
 
-{% for granie in grania %}
-<li><a href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie }}</a></li>
-{% empty %}
-nie zdefiniowano terminów
-{% endfor %}
+<p>
+  {% for uzytkownik in uzytkownicy %}
+  <div>{{ uzytkownik }}</div>
+  {% empty %}
+  nie ma nikogo
+  {% endfor %}
+</p>
 
+<a href = "/logout/">wyloguj</a>

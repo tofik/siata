@@ -1,9 +1,13 @@
 <h1>{{ granie }}</h1>
 
-{% for uczestnik in uczestnicy %}
-<li>{{ uczestnik }}</li>
-{% empty %}
-brak chętnych
-{% endfor %}
+<p>
+  {% for uczestnik in uczestnicy %}
+  <li>{{ uczestnik }}</li>
+  {% empty %}
+  brak chętnych
+  {% endfor %}
+</p>
 
-
+<p>
+  <a href = "/">lista</a>
+</p>

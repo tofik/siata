@@ -5,7 +5,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-                       url(r'^accounts/login/$', 'gramy.views.login'),                   
+                       url(r'^accounts/login/$', 'gramy.views.login_view'),
+                       url(r'^logout/$', 'gramy.views.logout_view'),
                        url(r'^siata/', include('gramy.urls')),
                        url(r'^$', include('gramy.urls')),
 

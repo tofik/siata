@@ -5,13 +5,16 @@ from django.shortcuts import render_to_response
 from django.contrib.auth import login, logout, forms as auth_form, authenticate
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from django.contrib.auth.models import User
 
 def lista(request):
     grania = Granie.objects.all()
+    uzytkownicy = User.objects.all()
     return render_to_response('gramy/lista.html', {'grania': grania,
+                                                   'uzytkownicy': uzytkownicy,
                                                    })
 
-def login(request, next = '/'):
+def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -19,7 +22,7 @@ def login(request, next = '/'):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponse('zalogowane')
+                return HttpResponseRedirect(request.POST['next'])
             else:
                 return HttpResponseRedirect('/')
         else:
@@ -27,10 +30,13 @@ def login(request, next = '/'):
     else:
         form = auth_form.AuthenticationForm()
         return render_to_response('gramy/login.html', {'form': form,
-                                                       'next': next,
+                                                       'next': request.GET['next'],
                                                        }, context_instance = RequestContext(request))
         
             
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/')
 
 
 @login_required
