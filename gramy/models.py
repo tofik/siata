@@ -17,4 +17,5 @@ class Uczestnik(models.Model):
     forname = models.CharField(max_length = 20)
     surname = models.CharField(max_length = 40)
     created = models.DateTimeField(auto_now_add = True)
+    chce = models.IntegerField()
 #    email = models.CharField(max_length = 60)

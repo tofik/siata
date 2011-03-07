@@ -9,9 +9,7 @@ from django.contrib.auth.models import User
 
 def lista(request):
     grania = Granie.objects.all()
-    uzytkownicy = User.objects.all()
     return render_to_response('gramy/lista.html', {'grania': grania,
-                                                   'uzytkownicy': uzytkownicy,
                                                    })
 
 def login_view(request):
@@ -41,8 +39,15 @@ def logout_view(request):
 
 @login_required
 def szczegoly(request, id):
+    if request.method == 'POST':
+        print request.POST['chcesz']
+    else:
+        print 'dupa'
     granie = Granie.objects.get(id = id)
     uczestnicy = granie.uczestnik_set.all()
+    uzytkownicy = User.objects.all()
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
-                                                      'uczestnicy': uczestnicy,
-                                                       })
+                                                       'uzytkownicy': uzytkownicy,
+                                                       'uczestnicy': uczestnicy,
+                                                       'user': request.user,
+                                                       }, context_instance = RequestContext(request))
