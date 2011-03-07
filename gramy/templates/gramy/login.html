@@ -1,0 +1,21 @@
+<form action="/accounts/login/" method="POST">
+  {% csrf_token %}
+
+
+  <fieldset>
+    {% for field in form %}
+    {{ field.label_tag }}
+    {{ field }}
+    {% endfor %}
+    <div style="text-align:left">
+      <input type="submit" value="login" />
+    </div>
+    <input type="hidden" name="next" value="{{ next }}" />
+    <ul>
+      <li><a href="#">Forgot your password?</a></li>
+      <li><a href="#">Register</a></li>
+    </ul>
+    
+  </fieldset>
+</form>
+

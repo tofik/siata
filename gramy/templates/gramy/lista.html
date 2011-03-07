@@ -1,0 +1,8 @@
+<h1>terminy grania</h1>
+
+{% for granie in grania %}
+<li><a href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie }}</a></li>
+{% empty %}
+nie zdefiniowano terminów
+{% endfor %}
+
