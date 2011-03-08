@@ -40,19 +40,18 @@ def logout_view(request):
 @login_required
 def szczegoly(request, id):
     granie = Granie.objects.get(id = id)
-    uczestnicy = Uczestnik.objects.all()
+    uczestnicy = Uczestnik.objects.filter(granie = granie)
 
     if request.method == 'POST':
         uczestnik = Uczestnik(nick = request.user, granie = granie, chce = request.POST['chcesz'])
         print uczestnik.chce
         if uczestnik.chce == '1':
-            print uczestnicy
-            print uczestnik
-            if Uczestnik.objects.filter(nick = uczestnik, granie = granie).exists():
-                print 'juz takiego mamy'         
-            else:
-                print 'trzeba zapisac'
+            if not Uczestnik.objects.filter(nick = uczestnik, granie = granie).exists():
+                uczestnik.save()
             
+        if uczestnik.chce == '0':
+            if Uczestnik.objects.filter(nick = uczestnik, granie = granie).exists():
+                Uczestnik.objects.filter(nick = uczestnik, granie = granie).delete()
 
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
                                                        'uczestnicy': uczestnicy,

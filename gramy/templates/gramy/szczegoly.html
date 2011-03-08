@@ -1,8 +1,9 @@
 <h1>{{ granie }}</h1>
 
+<h3>kto chce grac</h3>
 <p>
   {% for uczestnik in uczestnicy %}
-  <li>{{ uczestnik }} {{uczestnik.chce}} {{uczestnik.granie}}</li>
+  <li>{{ uczestnik }}</li>
   {% empty %}
   brak chętnych
   {% endfor %}
