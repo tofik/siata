@@ -39,15 +39,22 @@ def logout_view(request):
 
 @login_required
 def szczegoly(request, id):
-    if request.method == 'POST':
-        print request.POST['chcesz']
-    else:
-        print 'dupa'
     granie = Granie.objects.get(id = id)
-    uczestnicy = granie.uczestnik_set.all()
-    uzytkownicy = User.objects.all()
+    uczestnicy = Uczestnik.objects.all()
+
+    if request.method == 'POST':
+        uczestnik = Uczestnik(nick = request.user, granie = granie, chce = request.POST['chcesz'])
+        print uczestnik.chce
+        if uczestnik.chce == '1':
+            print uczestnicy
+            print uczestnik
+            if Uczestnik.objects.filter(nick = uczestnik, granie = granie).exists():
+                print 'juz takiego mamy'         
+            else:
+                print 'trzeba zapisac'
+            
+
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
-                                                       'uzytkownicy': uzytkownicy,
                                                        'uczestnicy': uczestnicy,
                                                        'user': request.user,
                                                        }, context_instance = RequestContext(request))

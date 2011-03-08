@@ -11,11 +11,9 @@ class Granie(models.Model):
 
 class Uczestnik(models.Model):
     def __unicode__(self):
-        return ("%s %s" % (self.surname, self.forname))
+        return ("%s" % (self.nick))
     
     granie = models.ForeignKey(Granie)
-    forname = models.CharField(max_length = 20)
-    surname = models.CharField(max_length = 40)
-    created = models.DateTimeField(auto_now_add = True)
+    nick = models.CharField(max_length = 20)
     chce = models.IntegerField()
 #    email = models.CharField(max_length = 60)

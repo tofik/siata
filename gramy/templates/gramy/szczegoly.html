@@ -2,7 +2,7 @@
 
 <p>
   {% for uczestnik in uczestnicy %}
-  <li>{{ uczestnik }}</li>
+  <li>{{ uczestnik }} {{uczestnik.chce}} {{uczestnik.granie}}</li>
   {% empty %}
   brak chętnych
   {% endfor %}
