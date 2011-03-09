@@ -8,6 +8,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 
 def lista(request):
+    ilosc_chetnych = dict()
     grania = Granie.objects.all()
     return render_to_response('gramy/lista.html', {'grania': grania,
                                                    })
@@ -42,19 +43,18 @@ def szczegoly(request, id):
     granie = Granie.objects.get(id = id)
     uczestnicy = Uczestnik.objects.filter(granie = granie)
 
-    if request.method == 'POST':
-        uczestnik = Uczestnik(nick = request.user, granie = granie, chce = request.POST['chcesz'])
+    if request.method == 'POST':        
+        uczestnik = Uczestnik(nick = request.user, granie = granie, chce = request.POST.get('chce', 2))
         print uczestnik.chce
         if uczestnik.chce == '1':
-            if not Uczestnik.objects.filter(nick = uczestnik, granie = granie).exists():
+            if not Uczestnik.objects.filter(nick = uczestnik.nick, granie = uczestnik.granie).exists():
                 uczestnik.save()
-            
+               
         if uczestnik.chce == '0':
-            if Uczestnik.objects.filter(nick = uczestnik, granie = granie).exists():
-                Uczestnik.objects.filter(nick = uczestnik, granie = granie).delete()
+            if Uczestnik.objects.filter(nick = uczestnik.nick, granie = uczestnik.granie).exists():
+                Uczestnik.objects.filter(nick = uczestnik.nick, granie = uczestnik.granie).delete()
 
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
                                                        'uczestnicy': uczestnicy,
                                                        'user': request.user,
-                                                       'chcesz': 2,
                                                        }, context_instance = RequestContext(request))

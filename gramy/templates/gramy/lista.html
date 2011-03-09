@@ -1,11 +1,10 @@
 <h1>terminy grania</h1>
 <p>
   {% for granie in grania %}
-  <li><a href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie }}</a></li>
+  <li><a href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie.date|date:"M d D" }}</a> ile osob chce grac : {{ granie.uczestnik_set.all.count }}</li>
   {% empty %}
   nie zdefiniowano terminów
   {% endfor %}
 </p>
-
 
 <a href = "/logout/">wyloguj</a>
