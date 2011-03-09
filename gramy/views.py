@@ -1,7 +1,7 @@
 # Create your views here.
 from gramy.models import Uczestnik, Granie
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.contrib.auth import login, logout, forms as auth_form, authenticate
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -56,4 +56,5 @@ def szczegoly(request, id):
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
                                                        'uczestnicy': uczestnicy,
                                                        'user': request.user,
+                                                       'chcesz': 2,
                                                        }, context_instance = RequestContext(request))

@@ -13,6 +13,8 @@
   {% csrf_token %}
   <fieldset>
     <p>{{ user }} chcesz grać? </p>
+    <!-- chcesz = 2 if no choice is made -->
+    <input type="hidden" name="chcesz" value="{{ chcesz }}" />
     <p><input type = "radio" name = "chcesz" value = 1> tak </p>
     <p><input type = "radio" name = "chcesz" value = 0 > nie </p>
     <p><input type = "submit" value = "zatwierdz"></p>
