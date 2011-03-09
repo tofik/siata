@@ -6,9 +6,9 @@ from django.contrib.auth import login, logout, forms as auth_form, authenticate
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.contrib.auth.models import User
+from gramy_utils import *
 
 def lista(request):
-    ilosc_chetnych = dict()
     grania = Granie.objects.all()
     return render_to_response('gramy/lista.html', {'grania': grania,
                                                    })
@@ -31,7 +31,7 @@ def login_view(request):
         return render_to_response('gramy/login.html', {'form': form,
                                                        'next': request.GET['next'],
                                                        }, context_instance = RequestContext(request))
-        
+  
             
 def logout_view(request):
     logout(request)
@@ -53,6 +53,13 @@ def szczegoly(request, id):
         if uczestnik.chce == '0':
             if Uczestnik.objects.filter(nick = uczestnik.nick, granie = uczestnik.granie).exists():
                 Uczestnik.objects.filter(nick = uczestnik.nick, granie = uczestnik.granie).delete()
+
+
+        if granie.uczestnik_set.all().count() >= 2:
+            message = '%s sie zapisal i jest komplet' % uczestnik.nick
+            send_im_chat(message, 'tofikowy01@gmail.com')
+        if granie.uczestnik_set.all().count() == 0:
+            send_im_chat('nie gramy', 'tofikowy01@gmail.com')
 
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
                                                        'uczestnicy': uczestnicy,
