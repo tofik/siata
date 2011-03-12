@@ -57,9 +57,11 @@ def szczegoly(request, id):
 
         if granie.uczestnik_set.all().count() >= 2:
             message = '%s sie zapisal i jest komplet' % uczestnik.nick
-            send_im_chat(message, 'tofikowy01@gmail.com')
+            print 'gramy'
+        # send_im_chat(message, 'tofikowy01@gmail.com')
         if granie.uczestnik_set.all().count() == 0:
-            send_im_chat('nie gramy', 'tofikowy01@gmail.com')
+            print 'nie ma chetnych'
+            # send_im_chat('nie gramy', 'tofikowy01@gmail.com')
 
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
                                                        'uczestnicy': uczestnicy,
