@@ -1,4 +1,4 @@
-from siata.gramy.models import Granie, Uczestnik
+from gramy.models import Granie, Uczestnik
 from django.contrib import admin
 
 class UczestnicyInLine(admin.TabularInline):
