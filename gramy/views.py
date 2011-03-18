@@ -45,7 +45,7 @@ def szczegoly(request, id):
 
     if request.method == 'POST':        
         uczestnik = Uczestnik(nick = request.user, granie = granie, chce = request.POST.get('chce', 2))
-        print uczestnik.chce
+#        print uczestnik.chce
         if uczestnik.chce == '1':
             if not Uczestnik.objects.filter(nick = uczestnik.nick, granie = uczestnik.granie).exists():
                 uczestnik.save()
@@ -57,13 +57,17 @@ def szczegoly(request, id):
 
         if granie.uczestnik_set.all().count() >= 2:
             message = '%s sie zapisal i jest komplet' % uczestnik.nick
-            print 'gramy'
+#            print 'gramy'
             # send_im_chat(message, 'tofikowy01@gmail.com')
         if granie.uczestnik_set.all().count() == 0:
             # send_im_chat('nie ma chetnych', 'tofikowy01@gmail.com')
-            print 'brak chetnych'
+ #           print 'brak chetnych'
+            message = "brak chetnych"
 
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
                                                        'uczestnicy': uczestnicy,
                                                        'user': request.user,
-                                                       }, context_instance = RequestContext(request))
+                                                       },
+                              context_instance = RequestContext(request)
+                              )
+    
