@@ -1,10 +1,11 @@
-application: ctst
+application: enough2play
 version: 1
 runtime: python
 api_version: 1
 
 builtins:
 - remote_api: on
+- datastore_admin: on
 
 inbound_services:
 - warmup
