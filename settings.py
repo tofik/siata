@@ -8,6 +8,8 @@ import sys
 
 SECRET_KEY = '=r-$b*8hglm+858&9t043hlm6-&6-3d3vfc4((7yd0dbrakhvi'
 
+PROJECT_ROOT = os.path.dirname(__file__)
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.contenttypes',
@@ -37,7 +39,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 TEST_RUNNER = 'djangotoolbox.test.CapturingTestSuiteRunner'
 
 ADMIN_MEDIA_PREFIX = '/media/admin/'
-TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates'),)
+#TEMPLATE_DIRS = (os.path.join(os.path.dirname(__file__), 'templates'),)
+TEMPLATE_DIRS = (
+    PROJECT_ROOT + '/templates',
+    )
 
 ROOT_URLCONF = 'urls'
 
@@ -53,3 +58,5 @@ try:
 except ImportError:
     pass
 
+MEDIA_URL = '/static/'
+MEDIA_ROOT = PROJECT_ROOT + '/static/'

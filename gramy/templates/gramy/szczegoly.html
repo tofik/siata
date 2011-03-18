@@ -1,3 +1,7 @@
+{% extends "siata_base.html" %}
+
+{% block main %}
+
 <h1>{{ granie }}</h1>
 
 <h3>kto chce grac</h3>
@@ -9,8 +13,9 @@
   {% endfor %}
 </p>
 
-<form action="/siata/gramy/szczegoly/{{ granie.id }}/" method = "POST">
+<form action="/siata/gramy/szczegoly/{{ granie.id }}/" method="POST">
   {% csrf_token %}
+
   <fieldset>
     <p>{{ user }} chcesz grać? </p>
     <p><input type = "radio" name = "chce" value = 1> tak </p>
@@ -18,9 +23,10 @@
     <p><input type = "submit" value = "zatwierdz"></p>
 
   </fieldset>
-  
 </form>
 
 <p>
   <a href = "/">lista</a>
 </p>
+
+{% endblock %}

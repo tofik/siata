@@ -1,0 +1,11 @@
+body {
+    background: grey;
+}
+
+.container {
+    border: 5px solid black;
+    min-width: 500px;
+    width: 80%;
+    max-width:800px;
+    background: white;
+}
