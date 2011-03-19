@@ -1,11 +1,27 @@
 body {
-    background: grey;
+    background: lightblue;
 }
 
 .container {
-    border: 5px solid black;
-    min-width: 500px;
-    width: 80%;
-    max-width:800px;
-    background: white;
+    max-width: 1000px;
+    min-width: 640px;
+}
+
+.logged_container {
+    width: 150px;
+    float: left;
+    margin: 0px 0px 0px 0px;
+}
+
+.right_container {
+    width: 150px;
+    float:right;
+}
+
+.main_container {
+    margin-left: 150px;
+    margin-right: 150px;
+    border: 2px solid black;
+    background: lightgrey;
+    padding: 10px 10px 10px 10px;
 }

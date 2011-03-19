@@ -5,17 +5,42 @@
   </head>
   
   <body>
-    <div class="container">
-      {% block main %}
-      <!--
-	 tu bedzie to, co zasadnicze
-	-->
-      
-      {% endblock %}
-    </div>
-    
-  </body>
-  
 
-  
+    <!-- main container starts -->
+    <div class="container">
+
+      <!-- left container starts -->
+      <div class="logged_container">
+	{% if request.user.is_anonymous == 1 %}
+	<div style="background: red; font-weight:bold; font-size:12; text-align: center;">
+	  nie jestes zalogowany
+	</div>
+	{% else %}
+	<div style="background: green; font-weight:bold; font-size:12; text-align: center; color: white;">
+	  zalogowany jako {{ request.user }}
+	</div>
+	{% endif %}
+      </div>
+      <!-- left container stops -->
+
+      <!-- right container starts -->
+      <div class="right_container">
+	{% if request.user.is_anonymous == 1 %}
+	{% else %}
+	{% block menu %}{% endblock %}
+	{% endif %}
+      </div>
+      <!-- right container stops -->
+      
+      <!-- middle container starts -->
+      <div class="main_container">
+	{% block main %}{% endblock %}
+      </div>
+      <!-- middle container stops -->
+
+    </div>
+    <!-- main container stops -->
+
+
+  </body>
 </html>

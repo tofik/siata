@@ -1,7 +1,7 @@
 {% extends "siata_base.html" %}
 
 {% block main %}
-<h1>terminy grania</h1>
+<h3>mozna grac: </h3>
 <p>
   {% for granie in grania %}
   <li><a href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie.date|date:"M d D" }}</a> ile osob chce grac : {{ granie.uczestnik_set.all.count }}</li>
@@ -9,6 +9,10 @@
   nie zdefiniowano terminów
   {% endfor %}
 </p>
+{% endblock %}
 
-<a href = "/logout/">wyloguj</a>
+{% block menu %}
+<ul style="list-style: none; background: green;">
+  <li><a style="text-decoration: none; color: white;" href = "/logout/">wyloguj</a></li>
+</ul>
 {% endblock %}

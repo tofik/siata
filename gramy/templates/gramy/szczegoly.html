@@ -24,9 +24,11 @@
 
   </fieldset>
 </form>
+{% endblock %}
 
-<p>
-  <a href = "/">lista</a>
-</p>
-
+{% block menu %}
+<ul style="list-style: none; padding: 0 0 0 0; text-align:center;">
+  <li style="margin-bottom: 5px; background: green;"><a style="text-decoration: none; color: white;" href = "/">lista</a></li>
+  <li style="background: green;"><a style="text-decoration: none; color: white;" href = "/logout/">wyloguj</a></li>
+</ul>
 {% endblock %}

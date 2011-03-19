@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 def lista(request):
     grania = Granie.objects.all()
     return render_to_response('gramy/lista.html', {'grania': grania,
-                                                   })
+                                                   },context_instance = RequestContext(request))
 
 def login_view(request):
     if request.method == 'POST':

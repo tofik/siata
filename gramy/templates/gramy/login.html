@@ -7,8 +7,12 @@
 
   <fieldset>
     {% for field in form %}
-    {{ field.label_tag }}
-    {{ field }}
+    <p>
+      {{ field.label_tag }}
+    </p>
+    <p>
+      {{ field }}
+    </p>
     {% endfor %}
     <div style="text-align:left">
       <input type="submit" value="login" />
@@ -23,3 +27,4 @@
 </form>
 
 {% endblock %}
+
