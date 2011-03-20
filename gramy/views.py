@@ -6,7 +6,9 @@ from django.contrib.auth import login, logout, forms as auth_form, authenticate
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.contrib.auth.models import User
-#from gramy_utils import *
+from gramy_utils import *
+
+
 
 def lista(request):
     grania = Granie.objects.all()
@@ -57,12 +59,12 @@ def szczegoly(request, id):
 
         if granie.uczestnik_set.all().count() >= 2:
             message = '%s sie zapisal i jest komplet' % uczestnik.nick
-#            print 'gramy'
-            # send_im_chat(message, 'tofikowy01@gmail.com')
+#            send_im_chat(message, 'tofikowy01@gmail.com')
+            send_email('korba@autograf.pl', 'tofikowy01@gmail.com', 'siata', 'jest granie')
         if granie.uczestnik_set.all().count() == 0:
-            # send_im_chat('nie ma chetnych', 'tofikowy01@gmail.com')
- #           print 'brak chetnych'
             message = "brak chetnych"
+#            send_im_chat(message, 'tofikowy01@gmail.com')
+            send_email('korba@autograf.pl', 'tofikowy01@gmail.com', 'siata', 'nie ma grania')
 
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
                                                        'uczestnicy': uczestnicy,

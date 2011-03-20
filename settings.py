@@ -60,3 +60,12 @@ except ImportError:
 
 MEDIA_URL = '/static/'
 MEDIA_ROOT = PROJECT_ROOT + '/static/'
+
+EMAIL_HOST = 'smtp.poczta.onet.pl'
+EMAIL_HOST_USER = 'korba@autograf.pl'
+EMAIL_HOST_PASSWORD = 'everest8848'
+EMAIL_PORT = '465'
+EMAIL_USE_TLS = True
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+SERVER_EMAIL = ''
+DEFAULT_FROM_EMAIL = ''
