@@ -30,7 +30,7 @@ DATABASES = {
 # timezone as the operating system.
 # If running in a Windows environment this must be set to the same as your
 # system time zone.
-TIME_ZONE = 'Poland/Warsaw'
+TIME_ZONE = 'Europe/Warsaw'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
@@ -100,3 +100,14 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
+
+
+EMAIL_HOST = 'smtp.poczta.onet.pl'
+EMAIL_HOST_USER = 'korba@autograf.pl'
+EMAIL_HOST_PASSWORD = 'everest8848'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = False
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+SERVER_EMAIL = ''
+DEFAULT_FROM_EMAIL = ''
+
