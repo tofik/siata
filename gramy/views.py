@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from gramy_utils import *
-#from django.core.mail import send_mail
+from django.contrib.auth.views import password_change, password_change_done
 from google.appengine.api import mail
 
 def lista(request):

@@ -10,6 +10,8 @@ urlpatterns = patterns('',
                        url(r'^logout/$', 'gramy.views.logout_view'),
                        url(r'^siata/', include('gramy.urls')),
                        url(r'^$', include('gramy.urls')),
+                       url(r'^accounts/password_change/$', 'gramy.views.password_change', {'template_name': 'registration/password_change.html'}),
+                       url(r'^accounts/password_change_done/$', 'gramy.views.password_change_done', {'template_name': 'registration/password_change_done.html'}),
 
                        # Uncomment the admin/doc line below to enable admin documentation:
                            (r'^admin/doc/', include('django.contrib.admindocs.urls')),
