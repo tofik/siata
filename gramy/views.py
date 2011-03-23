@@ -7,8 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from gramy_utils import *
-from django.contrib.auth.views import password_change, password_change_done
-from google.appengine.api import mail
 
 def lista(request):
     grania = Granie.objects.all()
@@ -47,7 +45,6 @@ def szczegoly(request, id):
 
     if request.method == 'POST':        
         uczestnik = Uczestnik(nick = request.user, granie = granie, chce = request.POST.get('chce', 2))
-#        print uczestnik.chce
         if uczestnik.chce == '1':
             if not Uczestnik.objects.filter(nick = uczestnik.nick, granie = uczestnik.granie).exists():
                 uczestnik.save()
@@ -58,15 +55,23 @@ def szczegoly(request, id):
 
 
         if granie.uczestnik_set.all().count() >= 2:
-            message = '%s sie zapisal i jest komplet' % uczestnik.nick
+            if granie.decision == 0:
+                granie.decision = 1
+                granie.save()
+                recipients = ['tofikowy01@gmail.com']
+                send_mail4play(granie.decision, recipients)
 #            send_im_chat(message, 'tofikowy01@gmail.com')
 #            send_mail('gramy', 'jest granie','korba@autograf.pl', ['tofikowy01@gmail.com']) # django.core
-            mail.send_mail('tomek.filipczuk@gmail.com', ['tofikowy01@gmail.com'], 'gramy', 'jest granie') # google.appengine.api
-        if granie.uczestnik_set.all().count() == 0:
-            message = "brak chetnych"
+#            mail.send_mail('tomek.filipczuk@gmail.com', ['tofikowy01@gmail.com'], 'gramy', 'jest granie') # google.appengine.api
+        if granie.uczestnik_set.all().count() == 1:
+            if granie.decision == 1:
+                granie.decision = 0
+                granie.save()
+                recipients = ['tofikowy01@gmail.com']
+                send_mail4play(granie.decision, recipients)
 #            send_im_chat(message, 'tofikowy01@gmail.com')
 #            send_mail('nie gramy', 'nie ma grania','korba@autograf.pl', ['tofikowy01@gmail.com']) # django.core
-            mail.send_mail('tomek.filipczuk@gmail.com', ['tofikowy01@gmail.com'], 'nie gramy', 'nie ma grania') # google.appengine.api
+#            mail.send_mail('tomek.filipczuk@gmail.com', ['tofikowy01@gmail.com'], 'nie gramy', 'nie ma grania') # google.appengine.api
 
     return render_to_response('gramy/szczegoly.html', {'granie': granie,
                                                        'uczestnicy': uczestnicy,

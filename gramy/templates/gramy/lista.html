@@ -4,7 +4,13 @@
 <h3>mozna grac: </h3>
 <p>
   {% for granie in grania %}
-  <li><a href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie.date|date:"M d D" }}</a> ile osob chce grac : {{ granie.uczestnik_set.all.count }}</li>
+  {% if granie.decision == 1 %}
+  <div style="font-weight: bold; color: green;">
+  {% else %}
+  <div style="color: red;">
+  {% endif %}
+  <li><a style="text-decoration: none;" href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie.date|date:"M d D" }}</a> ile osob chce grac : {{ granie.uczestnik_set.all.count }}</li>
+  </div>
   {% empty %}
   nie zdefiniowano terminów
   {% endfor %}

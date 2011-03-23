@@ -3,7 +3,8 @@
 import sys
 import time
 from django.core.mail import send_mail
-#from django.core import mail
+from google.appengine.api import mail
+from django.core import mail
 
 # def send_im_chat(content, recipient):
 #     login = 'tofikowy03' # @gmail.com
@@ -17,6 +18,15 @@ from django.core.mail import send_mail
 #     cnx.send(message)
 
 
-def send_email(sender, to, subject, content):
-    message = content
-    send_mail(subject, message, sender, [to], fail_silently=False)
+def send_mail4play(decision, recipients):
+    if decision == 0:
+        werdykt = 'nie ma grania!'
+        temat = 'nie gramy'
+    if decision == 1:
+        werdykt = 'jest granie!'
+        temat = 'gramy'
+    subject = temat
+    content = werdykt
+#    send_mail(subject, content,'korba@autograf.pl', recipients) # django.core
+
+    mail.send_mail('tomek.filipczuk@gmail.com',recipients, subject, content)

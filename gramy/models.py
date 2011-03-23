@@ -6,6 +6,7 @@ class Granie(models.Model):
     def __unicode__(self):
         return ("%s" %  self.date)
     date = models.DateTimeField()
+    decision = models.IntegerField(default=0)
 #    chetni = models.IntegerField()
     
 
