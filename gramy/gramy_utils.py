@@ -2,9 +2,9 @@
 #import xmpp
 import sys
 import time
-from django.core.mail import send_mail
+#from django.core.mail import send_mail  # django.core
+#from django.core import mail
 from google.appengine.api import mail
-from django.core import mail
 
 # def send_im_chat(content, recipient):
 #     login = 'tofikowy03' # @gmail.com

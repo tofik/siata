@@ -1,7 +1,6 @@
 {% extends "siata_base.html" %}
 
 {% block main %}
-<h3>mozna grac: </h3>
 <p>
   {% for granie in grania %}
   {% if granie.decision == 1 %}
@@ -18,7 +17,5 @@
 {% endblock %}
 
 {% block menu %}
-<ul style="list-style: none; background: green;">
-  <li><a style="text-decoration: none; color: white;" href = "/logout/">wyloguj</a></li>
-</ul>
+<li><a style="text-decoration: none; color: white;" href = "/logout/">wyloguj</a></li>
 {% endblock %}

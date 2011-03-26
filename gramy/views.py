@@ -14,6 +14,7 @@ def lista(request):
                                                    },context_instance = RequestContext(request))
 
 def login_view(request):
+    redirect_to = request.GET.get('next', '/')
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -29,7 +30,7 @@ def login_view(request):
     else:
         form = auth_form.AuthenticationForm()
         return render_to_response('gramy/login.html', {'form': form,
-                                                       'next': request.GET['next'],
+                                                       'next': redirect_to,
                                                        }, context_instance = RequestContext(request))
   
             
@@ -59,7 +60,10 @@ def szczegoly(request, id):
                 granie.decision = 1
                 granie.save()
                 recipients = ['tofikowy01@gmail.com']
-                send_mail4play(granie.decision, recipients)
+
+                send_mail4play(granie.decision, recipients) # COMMENT WHEN RUN ON LOCALHOST / UNCOMMENT FOR UPLOAD
+
+
 #            send_im_chat(message, 'tofikowy01@gmail.com')
 #            send_mail('gramy', 'jest granie','korba@autograf.pl', ['tofikowy01@gmail.com']) # django.core
 #            mail.send_mail('tomek.filipczuk@gmail.com', ['tofikowy01@gmail.com'], 'gramy', 'jest granie') # google.appengine.api
@@ -68,7 +72,9 @@ def szczegoly(request, id):
                 granie.decision = 0
                 granie.save()
                 recipients = ['tofikowy01@gmail.com']
-                send_mail4play(granie.decision, recipients)
+
+                send_mail4play(granie.decision, recipients) # COMMENT WHEN RUN ON LOCALHOST / UNCOMMENT FOR UPLOAD
+
 #            send_im_chat(message, 'tofikowy01@gmail.com')
 #            send_mail('nie gramy', 'nie ma grania','korba@autograf.pl', ['tofikowy01@gmail.com']) # django.core
 #            mail.send_mail('tomek.filipczuk@gmail.com', ['tofikowy01@gmail.com'], 'nie gramy', 'nie ma grania') # google.appengine.api

@@ -15,7 +15,7 @@
     </p>
     {% endfor %}
     <div style="text-align:left">
-      <input type="submit" value="login" />
+      <input type="submit" value="zaloguj" />
     </div>
     <input type="hidden" name="next" value="{{ next }}" />
     <ul>
@@ -25,6 +25,8 @@
     
   </fieldset>
 </form>
-
 {% endblock %}
 
+{% block menu_login %}
+<li><a style="text-decoration: none; color: white;" href = "/">lista</a></li>
+{% endblock %}

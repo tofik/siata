@@ -1,46 +1,93 @@
-<html>
-  <head>
-    <title>gramy czy nie?</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/siata.css" /> 
-  </head>
-  
-  <body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
 
-    <!-- main container starts -->
-    <div class="container">
+Name       : Personal Description: A two-column, fixed-width design.
+Version    : 1.0
+Released   : 20080513
+-->
 
-      <!-- left container starts -->
-      <div class="logged_container">
-	{% if request.user.is_anonymous == 1 %}
-	<div style="background: red; font-weight:bold; font-size:12; text-align: center;">
-	  nie jestes zalogowany
-	</div>
-	{% else %}
-	<div style="background: green; font-weight:bold; font-size:12; text-align: center; color: white;">
-	  zalogowany jako {{ request.user }}
-	</div>
-	{% endif %}
-      </div>
-      <!-- left container stops -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>gramy czy nie?</title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="/static/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<div style="text-align: right;"><a style="color: grey; text-decoration: none;" href="/admin/">admin</a></div>
+<!-- start header -->
+<div id="header">
+	<h1>granie</h1>
+	<p> design By Free CSS Templates</p>
+</div>
+<!-- end header -->
 
-      <!-- right container starts -->
-      <div class="right_container">
-	{% if request.user.is_anonymous == 1 %}
-	{% else %}
-	{% block menu %}{% endblock %}
-	{% endif %}
-      </div>
-      <!-- right container stops -->
+
+<!-- start page -->
+<div id="wrapper">
+  <div id="page">
+
+
+    <!-- start content -->
+    <div id="content">
       
-      <!-- middle container starts -->
-      <div class="main_container">
-	{% block main %}{% endblock %}
+      <div class="post">
+	<h1 class="title">granie</h1>
+
+	<div class="entry">
+	  <p class="post">
+	    {% block main %}{% endblock %}
+	  </p>
+	</div>
+	
+	<p class="meta"><a href="#" class="more">Read More</a> <a href="#" class="comments">Comments</a></p>
       </div>
-      <!-- middle container stops -->
-
     </div>
-    <!-- main container stops -->
+    <!-- end content -->
 
 
-  </body>
+
+    <!-- start sidebar -->
+    <div id="sidebar">
+      <div class="wrap">
+	<div class="top">
+	  <div class="btm">
+	    <ul>
+	      <li>
+		<h2>autoryzacja</h2>
+		<ul>
+		  {% if request.user.is_anonymous == 1 %}
+		  <span style="color: RED;"><strong>NIE ZALOGOWANY!</strong></span>
+		  <li><a style="text-decoration: none;" href="/accounts/login/">zaloguj</a></li>
+		  {% block menu_login %}{% endblock %}
+		  {% else %}
+		  <span style="color: blue;">zalogowany jako <strong>{{ request.user }}</strong></span>
+		  <li><a  style="text-decoration: none;" href="/accounts/password_change/">zmiana hasla</a></li>
+		  {% block menu %} {% endblock %}
+		  {% endif %}
+		  
+		</ul>
+	      </li>
+	    </ul>
+	  </div>
+	</div>
+      </div>
+    </div>
+    <!-- end sidebar -->  
+
+    <div style="clear:both">&nbsp;</div>
+
+  </div>
+</div>
+
+
+
+<div id="footer">
+  <p>&copy;2007 All Rights Reserved &nbsp;&bull;&nbsp; Design by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a> &nbsp;&bull;&nbsp; Icons by <a href="http://www.famfamfam.com/">FAMFAMFAM</a>.</p>
+</div>
+</body>
 </html>
