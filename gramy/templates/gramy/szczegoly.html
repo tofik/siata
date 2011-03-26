@@ -3,20 +3,23 @@
 {% block main %}
 
 <h1>{{ granie }}</h1>
-<h3>kto chce grac</h3>
+<h3>chetni:</h3>
 <p>
   {% for uczestnik in uczestnicy %}
-  <li>{{ uczestnik }}</li>
+  <li style="list-style: decimal;">{{ uczestnik }}</li>
   {% empty %}
   brak chętnych
   {% endfor %}
 </p>
+{% endblock %}
 
+
+{% block question %}
 <form action="/siata/gramy/szczegoly/{{ granie.id }}/" method="POST">
   {% csrf_token %}
 
-  <fieldset>
-    <p>{{ user }} chcesz grać? </p>
+  <fieldset style="color:white;">
+    <p><strong>{{ user }}</strong> chcesz grać? </p>
     <p><input type = "radio" name = "chce" value = 1> tak </p>
     <p><input type = "radio" name = "chce" value = 0 > nie </p>
     <p><input type = "submit" value = "zatwierdz"></p>

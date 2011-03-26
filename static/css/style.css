@@ -61,7 +61,8 @@ hr {
 #wrapper {
 	margin: 0;
 	padding: 0;
-	background: #C0F3FD url(images/img02.jpg) repeat-x left top;
+	background: lightgrey;
+#	background: #C0F3FD url(images/img02.jpg) repeat-x left top;
 }
 
 

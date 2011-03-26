@@ -8,7 +8,7 @@
   {% else %}
   <div style="color: red;">
   {% endif %}
-  <li><a style="text-decoration: none;" href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie.date|date:"M d D" }}</a> ile osob chce grac : {{ granie.uczestnik_set.all.count }}</li>
+  <li style="list-style: none;"><a style="text-decoration: none; color: black;" href = "/siata/gramy/szczegoly/{{granie.id}}/">{{ granie.date|date:"M d D" }}</a> - chetni: {{ granie.uczestnik_set.all.count }}</li>
   </div>
   {% empty %}
   nie zdefiniowano terminów

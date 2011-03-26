@@ -55,7 +55,7 @@ def szczegoly(request, id):
                 Uczestnik.objects.filter(nick = uczestnik.nick, granie = uczestnik.granie).delete()
 
 
-        if granie.uczestnik_set.all().count() >= 2:
+        if granie.uczestnik_set.all().count() >= 6:
             if granie.decision == 0:
                 granie.decision = 1
                 granie.save()
@@ -67,7 +67,7 @@ def szczegoly(request, id):
 #            send_im_chat(message, 'tofikowy01@gmail.com')
 #            send_mail('gramy', 'jest granie','korba@autograf.pl', ['tofikowy01@gmail.com']) # django.core
 #            mail.send_mail('tomek.filipczuk@gmail.com', ['tofikowy01@gmail.com'], 'gramy', 'jest granie') # google.appengine.api
-        if granie.uczestnik_set.all().count() == 1:
+        if granie.uczestnik_set.all().count() < 6:
             if granie.decision == 1:
                 granie.decision = 0
                 granie.save()
