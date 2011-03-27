@@ -3,7 +3,7 @@ body {
 	margin-top: 20px;
 	margin: 0;
 	padding: 0;
-	background: #C0F3FD url(images/img01.gif) repeat-x left top;
+	background: url(images/siata_bg_01.png) repeat-x left top;
 	font-size: 13px;
 	text-align: justify;
 	color: #1F1F1F;
@@ -222,21 +222,24 @@ hr {
 	width: 245px;
 	margin-top: -130px;
 	padding: 0 0 0 0;
-	color: #17A141;
+#	color: #17A141;
+	color: black;
+	border: 2px solid white;
+	background: lightgrey;
 }
 
 #sidebar .btm {
 	margin: 0;
 	padding: 0;
-	background: url(images/img07.gif) no-repeat left bottom;
+#	background: url(images/img07.gif) no-repeat left bottom;
 }
 
 #sidebar .top {
-	background: url(images/img05.gif) no-repeat left top;
+#	background: url(images/img05.gif) no-repeat left top;
 }
 
 #sidebar .wrap {
-	background: url(images/img06.gif) repeat-y left top;
+#	background: url(images/img06.gif) repeat-y left top;
 }
 
 #sidebar ul {
@@ -325,7 +328,7 @@ hr {
 #footer {
 	width: auto;
 	height: 118px;
-	background: url(images/img03.gif) repeat-x left top;
+	background: url(images/siata_bg_02.png) repeat-x left top;
 	text-align: center;
 	font-size: 10px;
 	font-family: Arial, Helvetica, sans-serif;
